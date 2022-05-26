@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>My JavaScript Calculator</title>
+    <meta charset="UTF-8">
+</head>
+
+<body>
+    <form>
+        <p class=selectinfo>Please input number1:</p>
+        <input type="text" name="text1" id="nametext1">
+        <br><br><br><br>
+        <p class=selectinfo>Please input number2:</p>
+        <input type="text" name="text2" id="nametext2">
+
+        <br><br>
+        <p class=selectinfo>Please select a method:</p>
+
+        <div class=add>
+          <input type="radio" id="Add" name="sign" value="1" checked>
+          <label class="Add">Add</label>
+        </div>
+
+        <div class=subtraction>
+          <input type="radio" id="Subtraction" name="sign" value="2">
+          <label class="Subtraction">Subtraction</label>
+        </div>
+
+
+        <div class=multiplication>
+          <input type="radio" id="Multiplication" name="sign" value="3">
+          <label class="Multiplication">Multiplication</label>
+        </div>
+
+        <div class=division>
+          <input type="radio" id="Division" name="sign" value="4">
+          <label class="Division">Division</label>
+        </div>
+
+
+        <br><br>
+        <!-- <input type="submit" value="calculate" id="iamcalculator"> -->
+
+        <p id="result1"><strong>This area shows result</strong></p>
+    </form>
+
+    <script>
+        // document.getElementById("iamcalculator").addEventListener("click", e => {
+        //   e.preventDefault();
+        //   Calculates();
+        // }, false);
+        
+        document.getElementById("Add").addEventListener("click", Calculates, false);
+        document.getElementById("Subtraction").addEventListener("click", Calculates, false);
+        document.getElementById("Multiplication").addEventListener("click", Calculates, false);
+        document.getElementById("Division").addEventListener("click", Calculates, false);
+
+        document.getElementById('nametext1').addEventListener("input", Calculates, false );
+        document.getElementById('nametext2').addEventListener("input", Calculates, false );
+        function Calculates() {
+            const add = document.getElementById('Add');
+            const subtraction = document.getElementById("Subtraction");
+            const multiplication = document.getElementById("Multiplication");
+            const division = document.getElementById("Division");
+            const text1 = document.getElementById('nametext1').value;
+            const text2 = document.getElementById('nametext2').value;
+            let result = 'hello';
+
+            if(text1 != null){
+              text1float = parseFloat(text1);
+            } else {
+              document.getElementById('result1').innerHTML = "please input a valid number1";
+            }
+            if(text2 != null){
+              text2float = parseFloat(text2);
+            } else {
+              document.getElementById('result1').innerHTML = "please input a valid number2";
+            }
+            if (add.checked){
+              result=text1float+text2float;
+            }
+            if (subtraction.checked){
+              result=text1float-text2float;
+            }
+            if (multiplication.checked){
+              result=text1float*text2float;
+            }
+            if (division.checked){
+              if (text2float == 0) {
+                result="cannot divided by zero"
+              }
+              else result=text1float/text2float;
+            }
+            document.getElementById('result1').innerHTML = result;
+        }
+        // document.getElementById("iamcalculator").addEventListener("click", Calculates, false);
+        
+    </script>
+</body>
+
+</html>

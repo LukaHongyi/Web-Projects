@@ -1,0 +1,38 @@
+.regradepolicy {
+	font-size:15px;
+    position:fixed; 
+    bottom:250px; 
+    left:150px;
+    right:150px;
+    text-align:left;
+  }
+input[type=text], select, textarea {
+    width: 500px;
+    padding: 10px;
+  }
+
+input[type=submit] {
+    color: blue;
+    padding: 11px 20px;
+  }
+form { 
+    left: 31%;
+    top: 40%;
+    position: absolute;
+    margin-top: 0;
+    }
+.searchtitle{
+    color: blue;
+    font-size:50px;
+    position:fixed; 
+    top:0px; 
+    left:620px;
+}  
+
+.searchimg{
+    width:210px;
+    height:150px;
+    left: 43%;
+    top: 15%;
+    position: absolute;
+}

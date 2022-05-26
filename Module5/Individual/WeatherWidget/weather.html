@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Weather Widget</title>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="weather.css" />
+
+</head>
+
+<body>
+    <div class="weather" id="weatherWidget">
+        <div class="weather-loc"></div>
+        <div class="weather-humidity"></div>
+        <div class="weather-temp"></div>
+        <img class="weather-tomorrow" src= "http://us.yimg.com/i/us/nws/weather/gr/32ds.png" alt='tomorrowweather'/>
+        <img class="weather-dayaftertomorrow" src= "http://us.yimg.com/i/us/nws/weather/gr/32ds.png" alt='dayaftertomorrowweather'/>
+    </div>
+
+    <div>
+    <button id = "refresh">change city</button> 
+    </div>
+
+    <script>
+        function  fetchWeather(){
+            const xmlHttp = new XMLHttpRequest();
+            xmlHttp.open("GET", "https://classes.engineering.wustl.edu/cse330/content/weather_json.php", true);
+            xmlHttp.addEventListener("load", ajaxCallback, false);
+            xmlHttp.send(null)
+        }
+    
+        function ajaxCallback(){
+            const eventdata = JSON.parse(event.target.responseText);
+            document.getElementsByClassName("weather-loc")[0].innerHTML = "<strong>" + eventdata.location.city + "</strong>" +  eventdata.location.state;
+            document.getElementsByClassName("weather-humidity")[0].innerHTML = eventdata.atmosphere.humidity;
+            document.getElementsByClassName("weather-temp")[0].innerHTML = eventdata.current.temp;
+            document.getElementsByClassName("weather-tomorrow")[0].src= "http://us.yimg.com/i/us/nws/weather/gr/" + eventdata.tomorrow.code +"ds.png";
+            document.getElementsByClassName("weather-dayaftertomorrow")[0].src="http://us.yimg.com/i/us/nws/weather/gr/" + eventdata.dayafter.code +"ds.png";
+        }
+        const refresh = document.getElementById('refresh');
+        refresh.addEventListener("click", fetchWeather, false);
+        document.addEventListener("DOMContentLoaded", fetchWeather, false);
+    </script>
+</body>
+</html>
